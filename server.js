@@ -11,6 +11,9 @@ require("dotenv").config(); // attach .env file's credentials to node's processe
 const express = require("express"); // web app framework (serving)
 const mongoose = require("mongoose"); // Object Document Mapping (ODM)
 
+// imports
+const sampleRoutes = require("./routes/sample");
+
 // variables
 const app = express(); // express app initialization
 
@@ -21,6 +24,9 @@ app.use((req, res, next) => {
   console.log(req.hostname, req.method, req.path);
   next(); // IMPORTANT -> continue handling process
 }); // log each request
+
+// routes
+app.use("/api/sample", sampleRoutes);
 
 // connect to DataBase (DB) & starting to listening for requests
 mongoose
