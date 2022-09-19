@@ -1,6 +1,15 @@
 // frameworks
 const express = require("express");
 
+// imports
+const {
+  readCollection,
+  readDocument,
+  createDocument,
+  deleteDocument,
+  updateDocument,
+} = require("../controllers/sample");
+
 // variables
 const router = express.Router(); // router initialization ("router" isplaceholder for "app" in server.js)
 
@@ -8,29 +17,19 @@ const router = express.Router(); // router initialization ("router" isplaceholde
 //  Create, Read, Update, Delete (CRUD)
 
 //  Read collection (method -> GET, path -> "/api/sample/")
-router.get("/", (req, res) => {
-  res.json({ msg: "read collection" });
-});
+router.get("/", readCollection);
 
 //  Read single document (method -> GET, path -> "/api/sample/:id")
-router.get("/:id", (req, res) => {
-  res.json({ msg: "read document" });
-});
+router.get("/:id", readDocument);
 
 //  Create single document (method -> POST, path -> "/api/sample/")
-router.post("/", (req, res) => {
-  res.json({ msg: "create document" });
-});
+router.post("/", createDocument);
 
 //  Delete single document (method -> DELETE, path -> "/api/sample/:id")
-router.delete("/:id", (req, res) => {
-  res.json({ msg: "delete document" });
-});
+router.delete("/:id", deleteDocument);
 
 //  Update single document (method -> PATCH, path -> "/api/sample/:id")
-router.patch("/:id", (req, res) => {
-  res.json({ msg: "update document" });
-});
+router.patch("/:id", updateDocument);
 
 // exports
 module.exports = router;
