@@ -1,3 +1,17 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// THIS FILE FOR
+// all route handlers for a specified path
+
+// THIS FILE DOSE
+// create and export route handlers
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// create and export route handlers //
+
 // frameworks
 const express = require("express");
 
@@ -8,28 +22,25 @@ const {
   createDocument,
   deleteDocument,
   updateDocument,
-} = require("../controllers/sample");
+} = require("../controllers/sample"); // controllers (DB operations)
 
 // variables
-const router = express.Router(); // router initialization ("router" isplaceholder for "app" in server.js)
+const router = express.Router(); // will carry route handlers & will connect with app
 
-// routes
-//  Create, Read, Update, Delete (CRUD)
+// routes (to Create, Read, Update, Delete (CRUD))
+router.get("/", readCollection); // ["/api/sample/"] Read collection
 
-//  Read collection (method -> GET, path -> "/api/sample/")
-router.get("/", readCollection);
+router.get("/:id", readDocument); // ["/api/sample/:id"] Read document
 
-//  Read single document (method -> GET, path -> "/api/sample/:id")
-router.get("/:id", readDocument);
+router.post("/", createDocument); // ["/api/sample/"] Create document
 
-//  Create single document (method -> POST, path -> "/api/sample/")
-router.post("/", createDocument);
+router.delete("/:id", deleteDocument); // ["/api/sample/:id"] Delete document
 
-//  Delete single document (method -> DELETE, path -> "/api/sample/:id")
-router.delete("/:id", deleteDocument);
-
-//  Update single document (method -> PATCH, path -> "/api/sample/:id")
-router.patch("/:id", updateDocument);
+router.patch("/:id", updateDocument); // ["/api/sample/:id"] Update document
 
 // exports
 module.exports = router;
+
+// create and export route handlers //
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
